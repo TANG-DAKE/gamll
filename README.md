@@ -6,7 +6,7 @@
 
 业务数据 由Canal 监控MySQL数据变化，传入Kafka 
 
-![构架图](.\image\构架图.png)
+(.\image\构架图.png)
 
 项目构架图
 
