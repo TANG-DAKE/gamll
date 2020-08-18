@@ -1,4 +1,4 @@
-package com.atguigu.gmallpulisher.service;
+package com.dake.gmallpulisher.service;
 
 import java.util.Map;
 
@@ -7,4 +7,8 @@ public interface PublisherService {
     public Integer getDauTotal(String date);
 
     public Map getDauTotalHour(String date);
+
+    public Double getOrderAmountTotal(String date);
+
+    public Map getOrderAmountHourMap(String date);
 }

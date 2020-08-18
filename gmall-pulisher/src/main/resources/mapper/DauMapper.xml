@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.atguigu.gmallpulisher.mapper.DauMapper">
+<mapper namespace="com.dake.gmallpulisher.mapper.DauMapper">
 
     <select id="selectDauTotal" resultType="Integer">
         select count(*) from GMALL0317_DAU where logdate=#{date}

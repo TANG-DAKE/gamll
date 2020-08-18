@@ -21,6 +21,7 @@
         <module>gamll-realtime</module>
         <module>dw-chart</module>
         <module>gmall-pulisher</module>
+        <module>gmall-canal</module>
     </modules>
 
 

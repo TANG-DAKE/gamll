@@ -1,4 +1,4 @@
-package com.atguigu.gmallpulisher.mapper;
+package com.dake.gmallpulisher.mapper;
 
 import java.util.List;
 import java.util.Map;
