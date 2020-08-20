@@ -7,7 +7,7 @@
 业务数据 由Canal 监控MySQL数据变化，传入Kafka 
 
 
-![构架图](image\构架图.png)
+<img src="image/构架图.png" alt="架构图" style="zoom: 33%;" />
 =======
 项目构架图
 
@@ -68,7 +68,11 @@ MySQL：结果数据（计算完成）
 
 ##### 	MySQL Binlog 类型
 
-​		使用row 此构架中只能选用次方式 Canal是伪Slave 不具备解析sql的能力。
+​		此构架中只能选用row/行级记录Binlog 。
+
+​		Canal是伪Slave 不具备解析sql的能力。
+
+​		Binlog分类： 语句级（记录每次执行的语句），行级（记录每次操作后的变化）和混合
 
 ##### 	Kafka-SparkStreaming对接
 
@@ -312,3 +316,8 @@ MySQL：结果数据（计算完成）
 
     ​		    每次读写都要同步，有一定性能压力
 
+#### ElasticSearch
+
+​		一个事实分布式搜索和分析引擎。用于全文搜索、结构化搜索、分析。 lucene倒排索引和B+树结构 实现全文搜索。
+
+#### 

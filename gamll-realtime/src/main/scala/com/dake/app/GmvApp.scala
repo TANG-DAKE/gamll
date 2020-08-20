@@ -29,7 +29,7 @@ object GmvApp {
       val create_time: String = info.create_time
       val timeArr: Array[String] = create_time.split(" ")
       info.create_date = timeArr(0)
-      info.create_hour = timeArr(1)
+      info.create_hour = timeArr(1).split(":")(0)
 
       //脱敏
       val telTuple: (String, String) = info.consignee_tel.splitAt(4)

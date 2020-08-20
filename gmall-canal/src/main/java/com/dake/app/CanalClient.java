@@ -72,15 +72,34 @@ public class CanalClient {
     private static void handler(String tableName, CanalEntry.EventType eventType, List<CanalEntry.RowData> rowDatasList) {
         //GMV需求只需要order_info表中的新增数据
         if ("order_info".equals(tableName) && CanalEntry.EventType.INSERT.equals(eventType)) {
-            for (CanalEntry.RowData rowData : rowDatasList) {
-                //创建JSON对象用于存放列级对象
-                JSONObject jsonObject = new JSONObject();
-                for (CanalEntry.Column column : rowData.getAfterColumnsList()) {
-                    jsonObject.put(column.getName(),column.getValue());
-                }
-                System.out.println(jsonObject.toString());
-                MyKafkaSender.send(GmallConstants.KAFKA_TOPIC_ORDER_INFO,jsonObject.toString());
+
+            sendToKadka(rowDatasList, GmallConstants.KAFKA_TOPIC_ORDER_INFO);
+
+            //order_detail 新增
+        } else if ("order_detail".equals(tableName) && CanalEntry.EventType.INSERT.equals(eventType)) {
+
+            sendToKadka(rowDatasList, GmallConstants.KAFKA_TOPIC_ORDER_DETAIL);
+
+            //用户信息 新增及变化
+        } else if ("user_info".equals(tableName) && (CanalEntry.EventType.INSERT.equals(eventType) ||
+                CanalEntry.EventType.UPDATE.equals(eventType))) {
+
+            sendToKadka(rowDatasList, GmallConstants.KAFKA_TOPIC_USER_INFO);
+        }
+    }
+
+    private static void sendToKadka(List<CanalEntry.RowData> rowDatasList, String topic) {
+
+        for (CanalEntry.RowData rowData : rowDatasList) {
+            //创建JSON对象用于存放列级对象
+            JSONObject jsonObject = new JSONObject();
+
+            for (CanalEntry.Column column : rowData.getAfterColumnsList()) {
+                jsonObject.put(column.getName(), column.getValue());
             }
+
+            System.out.println(jsonObject.toString());
+            MyKafkaSender.send(topic, jsonObject.toString());
         }
     }
 }
