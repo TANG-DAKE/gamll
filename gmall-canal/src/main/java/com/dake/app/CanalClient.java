@@ -11,6 +11,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 import java.net.InetSocketAddress;
 import java.util.List;
+import java.util.Random;
 
 public class CanalClient {
     public static void main(String[] args) {
@@ -38,6 +39,7 @@ public class CanalClient {
                     e.printStackTrace();
                 }
             }
+
 
             //解析message
             //获取message中的entry集合并遍历
@@ -90,6 +92,7 @@ public class CanalClient {
 
     private static void sendToKadka(List<CanalEntry.RowData> rowDatasList, String topic) {
 
+
         for (CanalEntry.RowData rowData : rowDatasList) {
             //创建JSON对象用于存放列级对象
             JSONObject jsonObject = new JSONObject();
@@ -97,6 +100,12 @@ public class CanalClient {
             for (CanalEntry.Column column : rowData.getAfterColumnsList()) {
                 jsonObject.put(column.getName(), column.getValue());
             }
+            //增加随机延迟
+           /* try {
+                Thread.sleep(new Random().nextInt(3*1000));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }*/
 
             System.out.println(jsonObject.toString());
             MyKafkaSender.send(topic, jsonObject.toString());

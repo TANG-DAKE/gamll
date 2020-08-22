@@ -9,6 +9,7 @@ public class GmallConstants {
 
 
     public static final String ES_INDEX_ALTER="gmall_coupon_alert";
+    public static final String ES_SALE_DETAIL="gmall2020_sale_detail";
 
 
 }

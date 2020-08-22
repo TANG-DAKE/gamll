@@ -13,6 +13,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.json4s</groupId>
+            <artifactId>json4s-native_2.12</artifactId>
+            <version>3.5.4</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.dake</groupId>
             <artifactId>gmall-common</artifactId>
             <version>1.0-SNAPSHOT</version>
